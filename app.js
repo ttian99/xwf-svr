@@ -5,12 +5,12 @@ cfg.init('zqy');
 // 初始化express 
 var express = require('express');
 var app = express();
+var expressUtil = require('./lib/express/init-express.js');
+expressUtil.init(app);
 
 // 连接mongoDb数据库
-var mongo = require('./lib/db/initMongodb.js');
+var mongo = require('./lib/db/init-mongo.js');
 mongo.connectMongo(cfg.mongo.uri, cfg.mongo.options);
-
-
 
 // 监听process的异常
 process.on('uncaughtException', function (e) {

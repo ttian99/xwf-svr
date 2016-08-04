@@ -6,7 +6,7 @@ var cfg = {
 	init: function (dbname){
 		this.dbname = dbname;
 		this._initMongo();
-		console.log('this is init of cfg ！');
+		console.log('this is init of cfg: ' + JSON.stringify(cfg, "", 4));
 	},
 
 	_initMongo: function() {
