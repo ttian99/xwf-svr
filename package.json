@@ -5,12 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node app.js"
+    "dev": "node app.js | bunyan -L -o short",
+    "start": "node app.js"
   },
   "author": "Monkey-Jiao",
   "license": "ISC",
   "dependencies": {
+    "bunyan-daily": "0.0.2",
     "express": "^4.14.0",
+    "glob-all": "^3.1.0",
+    "lodash": "^4.14.1",
     "mongoose": "^4.5.8"
   }
 }
