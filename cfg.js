@@ -9,7 +9,7 @@ var cfg = {
 		this.dbname = dbname;
 		this._initLog();
 		this._initMongo();
-		console.log('this is init of cfg: ' + JSON.stringify(cfg, "", 4));
+		this._initRstCode();
 	},
 
 	_initLog: function() {
@@ -26,6 +26,11 @@ var cfg = {
 			dbUri = 'mongodb://192.168.1.176/';
 		}
 		this.mongo.uri = dbUri + this.dbname;
+	},
+
+	_initRstCode() {
+		var rstCode = require('./lib/comm/rst-code-def.js');
+		rstCode(cfg);
 	},
 
 	log: function (name){

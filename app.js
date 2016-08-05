@@ -4,6 +4,7 @@ cfg.init('zqy');
 
 // app日志
 var log = cfg.log('app');
+log.debug('cfg :', cfg);
 
 // 初始化express 
 var express = require('express');
