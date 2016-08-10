@@ -2,11 +2,12 @@
   "name": "xwf-svr",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "svr.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node app.js | bunyan -L -o short",
-    "start": "node app.js"
+    "dev": "node svr.js | bunyan -L -o short",
+    "start": "node svr.js",
+    "publish": "pm2 start svr.js"
   },
   "author": "Monkey-Jiao",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "express": "^4.14.0",
     "glob-all": "^3.1.0",
     "lodash": "^4.14.1",
-    "mongoose": "^4.5.8"
+    "mongoose": "^4.5.8",
+    "pm2": "^1.1.3"
   }
 }
