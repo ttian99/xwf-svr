@@ -12,11 +12,20 @@
   "author": "Monkey-Jiao",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "bunyan-daily": "0.0.2",
+    "compression": "^1.6.2",
+    "cors": "^2.7.1",
+    "errorhandler": "^1.4.3",
     "express": "^4.14.0",
     "glob-all": "^3.1.0",
     "lodash": "^4.14.1",
+    "method-override": "^2.3.6",
+    "moment": "^2.14.1",
     "mongoose": "^4.5.8",
-    "pm2": "^1.1.3"
+    "mongoose-toobject": "0.0.1",
+    "morgan": "^1.7.0",
+    "pm2": "^1.1.3",
+    "serve-favicon": "^2.3.0"
   }
 }
