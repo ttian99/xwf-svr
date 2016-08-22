@@ -8,8 +8,9 @@ var cfg = {
 	init: function (dbname){
 		this.dbname = dbname;
 		this._initLog();
-		this._initMongo();
 		this._initRstCode();
+		// this._initMongo();
+		this._initPsql();
 	},
 
 	_initLog: function() {
@@ -26,6 +27,11 @@ var cfg = {
 			dbUri = 'mongodb://192.168.1.176/';
 		}
 		this.mongo.uri = dbUri + this.dbname;
+	},
+
+	_initPsql: function() {
+		var psql = require('./lib/comm/postsql-def.js');
+		psql(cfg);
 	},
 
 	_initRstCode() {
