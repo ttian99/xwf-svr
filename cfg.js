@@ -4,13 +4,13 @@ var cfg = {
 	isDev: false, // 是否在调试模式下
   	dbname: null, // 数据库名称
   	mongo: { uri: null, options: { db: { safe: true } } }, // mongo数据
+  	dbType: 'mongo', // 数据库类型
 
 	init: function (dbname){
 		this.dbname = dbname;
 		this._initLog();
 		this._initRstCode();
-		// this._initMongo();
-		this._initPsql();
+		this._initDb();
 	},
 
 	_initLog: function() {
@@ -19,6 +19,19 @@ var cfg = {
 				dir: 'logs/' + this.dbname
 			}
 		});
+	},
+
+	_initRstCode: function() {
+		var rstCode = require('./lib/comm/rst-code-def.js');
+		rstCode(cfg);
+	},
+
+	_initDb: function() {
+		if (this.dbType == 'mongo') {
+			this._initMongo();
+		} else {
+			this._initPsql();
+		}
 	},
 
 	_initMongo: function() {
@@ -34,10 +47,7 @@ var cfg = {
 		psql(cfg);
 	},
 
-	_initRstCode() {
-		var rstCode = require('./lib/comm/rst-code-def.js');
-		rstCode(cfg);
-	},
+
 
 	log: function (name){
 		return bunyan.logger(name);
