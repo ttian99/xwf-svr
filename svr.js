@@ -19,13 +19,13 @@ if (cfg.dbType == 'mongo') {
 	mongo.connectMongo(cfg.mongo.uri, cfg.mongo.options, function(err, mongoUri) {
 		if (err)
 			log.error(err.stack);
-		log.debug('mongo uri: ' + mongoUri);
+		log.debug('dbType: mongo | uri: ' + mongoUri);
 	});
 } else {
 	// 初始postsql数据库
 	var psql = require('./lib/db/psql.js');
 	psql.init(cfg.psql);
-	log.debug('========== psql =================');
+	log.debug('dbType: postsql');
 }
 
 

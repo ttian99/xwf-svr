@@ -2,15 +2,16 @@ var bunyan = require('bunyan-daily');
 
 var cfg = {
 	isDev: false, // 是否在调试模式下
+	projName: 'xwf',  // 项目名称
   	dbname: null, // 数据库名称
-  	mongo: { uri: null, options: { db: { safe: true } } }, // mongo数据
-  	dbType: 'mongo', // 数据库类型
+  	dbType: '', // 数据库类型
 
 	init: function (dbname){
 		this.dbname = dbname;
 		this._initLog();
 		this._initRstCode();
 		this._initDb();
+		this._initCommCfg();
 	},
 
 	_initLog: function() {
@@ -35,19 +36,19 @@ var cfg = {
 	},
 
 	_initMongo: function() {
-		var dbUri = 'mongodb://localhost/';
-		if (this.isDev) {
-			dbUri = 'mongodb://192.168.1.176/';
-		}
-		this.mongo.uri = dbUri + this.dbname;
+		var mongoCfg = require('./lib/comm/mongo-def.js');
+		mongoCfg(cfg);
 	},
 
 	_initPsql: function() {
-		var psql = require('./lib/comm/postsql-def.js');
-		psql(cfg);
+		var psqlCfg = require('./lib/comm/postsql-def.js');
+		psqlCfg(cfg);
 	},
 
-
+	_initCommCfg: function () {
+		var commCfg = require('./lib/comm/'+ this.projName + '-comm-cfg.js');
+		commCfg(cfg);
+	},
 
 	log: function (name){
 		return bunyan.logger(name);
