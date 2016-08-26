@@ -1,17 +1,30 @@
 var bunyan = require('bunyan-daily');
 
 var cfg = {
-	isDev: false, // 是否在调试模式下
-	projName: 'xwf',  // 项目名称
+	projName: '',  // 项目名称
   	dbname: null, // 数据库名称
-  	dbType: '', // 数据库类型
-
-	init: function (dbname){
-		this.dbname = dbname;
+  	dbtype: '', // 数据库类型
+	port: 8010, // 端口
+	isDev: false, // 是否在调试模式下
+	init: function(argv) {
 		this._initLog();
+		this._initCmdArgvs(argv);
 		this._initRstCode();
-		this._initDb();
 		this._initCommCfg();
+		this._initDb();
+	},
+
+	_initCmdArgvs: function(argv) {
+		this.log('cfg').debug('projName = ' + argv.pname);
+		this.log('cfg').debug('dbname = ' + argv.dbname);
+		this.log('cfg').debug('dbtype = ' + argv.dbtype);
+		this.log('cfg').debug('port = ' + argv.port);
+		this.log('cfg').debug('isDev = ' + argv.isDev);
+		this.projName = argv.pname;
+		this.dbname = argv.dbname;
+		this.dbtype = argv.dbtype;
+		this.port = argv.port;
+		this.isDev = argv.isDev;
 	},
 
 	_initLog: function() {
@@ -28,7 +41,7 @@ var cfg = {
 	},
 
 	_initDb: function() {
-		if (this.dbType == 'mongo') {
+		if (this.dbtype == 'mongo') {
 			this._initMongo();
 		} else {
 			this._initPsql();

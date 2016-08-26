@@ -5,7 +5,9 @@
   "main": "svr.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node svr.js | bunyan -L -o short",
+    "dev": "node svr.js -d | bunyan -L -o short",
+    "xwf-dev": "node svr.js -pn xwf -db jiaodb -dbt postsql -p 8888 -d | bunyan -L -o short",
+    "zqy-dev": "node svr.js -n zqy -b zqy -t mongo -p 9911 -d | bunyan -L -o short",
     "start": "node svr.js",
     "publish": "pm2 start svr.js"
   },
@@ -14,11 +16,13 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "bunyan-daily": "0.0.2",
+    "commander": "^2.9.0",
     "compression": "^1.6.2",
     "cors": "^2.7.1",
     "errorhandler": "^1.4.3",
     "express": "^4.14.0",
     "glob-all": "^3.1.0",
+    "i": "^0.3.5",
     "lodash": "^4.14.1",
     "method-override": "^2.3.6",
     "moment": "^2.14.1",

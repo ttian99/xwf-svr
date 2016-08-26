@@ -1,6 +1,14 @@
+// 启动命令行文件
+var argv = require('./lib/tool/argv.js');
+
 // 初始化配置文件
+argv.pname = argv.pname || 'xwf';
+argv.dbname = argv.dbname || 'jiaodb';
+argv.dbtype = argv.dbtype || 'postsql'
+argv.port = argv.port || 8010;
+argv.dev = !!argv.dev;
 var cfg = require('./cfg.js');
-cfg.init('zqy');
+cfg.init(argv);
 
 // app日志
 var log = cfg.log('svr');
@@ -13,19 +21,19 @@ var expressUtil = require('./lib/express/init-express.js');
 expressUtil.init(app);
 
 // 数据库
-if (cfg.dbType == 'mongo') {
+if (cfg.dbtype == 'mongo') {
 	// 连接mongoDb数据库
 	var mongo = require('./lib/db/init-mongo.js');
 	mongo.connectMongo(cfg.mongo.uri, cfg.mongo.options, function(err, mongoUri) {
 		if (err)
 			log.error(err.stack);
-		log.debug('dbType: mongo | uri: ' + mongoUri);
+		log.debug('dbtype: mongo | uri: ' + mongoUri);
 	});
 } else {
 	// 初始postsql数据库
 	var psql = require('./lib/db/psql.js');
 	psql.init(cfg.psql);
-	log.debug('dbType: postsql');
+	log.debug('dbtype: postsql');
 }
 
 
@@ -39,9 +47,9 @@ app.use('/', require('./lib/router/api-router.js'));
 
 
 // 服务器监听 
-var server = app.listen(8010, function () {
+var server = app.listen(cfg.port, function () {
   var host = server.address().address;
   var port = server.address().port;
 
-  log.debug('svr is listening at http://%s:%s', host, port);
+  log.debug('svr is listening at'+ host + ":"+ port);
 });
