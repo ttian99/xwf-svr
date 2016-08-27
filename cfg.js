@@ -36,7 +36,7 @@ var cfg = {
 	},
 
 	_initRstCode: function() {
-		var rstCode = require('./lib/comm/rst-code-def.js');
+		var rstCode = require('./lib/client-svr-cfg/rst-code-def.js');
 		rstCode(cfg);
 	},
 
@@ -59,7 +59,7 @@ var cfg = {
 	},
 
 	_initCommCfg: function () {
-		var commCfg = require('./lib/comm/'+ this.projName + '-comm-cfg.js');
+		var commCfg = require('./lib/client-svr-cfg/'+ this.projName + '-comm-cfg.js');
 		commCfg(cfg);
 	},
 
