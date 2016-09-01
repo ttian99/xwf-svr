@@ -1,12 +1,12 @@
 // 启动命令行文件
 var argv = require('./lib/tool/argv.js');
+// argv.pname = argv.pname || 'xwf';
+// argv.dbname = argv.dbname || 'jiaodb';
+// argv.dbtype = argv.dbtype || 'postsql'
+// argv.port = argv.port || 8010;
+// argv.dev = !!argv.dev;
 
 // 初始化配置文件
-argv.pname = argv.pname || 'xwf';
-argv.dbname = argv.dbname || 'jiaodb';
-argv.dbtype = argv.dbtype || 'postsql'
-argv.port = argv.port || 8010;
-argv.dev = !!argv.dev;
 var cfg = require('./cfg.js');
 cfg.init(argv);
 
@@ -51,5 +51,5 @@ var server = app.listen(cfg.port, function () {
   var host = server.address().address;
   var port = server.address().port;
 
-  log.debug('svr is listening at'+ host + ":"+ port);
+  log.debug('svr is listening at : '+ cfg.svrUrl);
 });
