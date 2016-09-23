@@ -2,15 +2,15 @@
   "name": "xwf-svr",
   "version": "1.0.0",
   "description": "",
-  "main": "svr.js",
+  "main": "xwf-svr.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node svr.js -d | bunyan -L -o short",
-    "xwf-dev": "node svr.js -n xwf -b jiaodb -t postsql -d | bunyan -L -o short",
-    "zqy-dev": "node svr.js -n zqy -b zqy -t mongo -d | bunyan -L -o short",
-    "zqy-pub": "pm2 start svr.js -f -n zqy -dbname zqy -t mongo",
-    "start": "node svr.js",
-    "publish": "pm2 start svr.js"
+    "dev": "node xwf-svr.js -d | bunyan -L -o short",
+    "xwf-dev": "node xwf-svr.js -n xwf -b jiaodb -t postsql -d | bunyan -L -o short",
+    "zqy-dev": "node xwf-svr.js -n zqy -b zqy -t mongo -d | bunyan -L -o short",
+    "zqy-pub": "pm2 start xwf-svr.js -f -n zqy -dbname zqy -t mongo",
+    "start": "node xwf-svr.js",
+    "publish": "pm2 start xwf-svr.js"
   },
   "author": "Monkey-Jiao",
   "license": "ISC",
